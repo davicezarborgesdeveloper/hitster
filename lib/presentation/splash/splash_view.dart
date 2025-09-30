@@ -6,6 +6,7 @@ import 'package:hitster/presentation/resource/value_manager.dart';
 
 import '../home/home_view.dart';
 import '../resource/assets_manager.dart';
+import '../resource/style_manager.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -94,16 +95,14 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
               ),
               FadeTransition(
                 opacity: _opSubtitle,
-                child: const Column(
+                child: Column(
                   children: [
-                    SizedBox(height: AppPadding.p24),
+                    const SizedBox(height: AppPadding.p24),
                     Text(
                       'The music party game',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: FontSize.s20,
-                          fontFamily: 'Montserrat'),
+                      style: getRegularStyle(
+                          color: Colors.white, fontSize: FontSize.s20),
                     ),
                   ],
                 ),
