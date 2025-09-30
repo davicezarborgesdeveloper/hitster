@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hitster/presentation/resource/screen_manager.dart';
 import 'package:hitster/presentation/resource/value_manager.dart';
 
+import '../home/home_view.dart';
 import '../resource/assets_manager.dart';
 
 class SplashView extends StatefulWidget {
@@ -13,38 +14,61 @@ class SplashView extends StatefulWidget {
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView> {
-  Timer? _timer;
-  final ValueNotifier<bool> _visibleTitle = ValueNotifier(false);
-  final ValueNotifier<bool> _visibleSubtitle = ValueNotifier(false);
-  final int _duration = 4000;
+class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
+  static const durationTitle = Duration(milliseconds: 600);
+  static const delayBetween = Duration(seconds: 1);
+  static const durationSubtitle = Duration(milliseconds: 600);
 
-  void setVisibleTitle() {
-    _visibleTitle.value = true;
-    Future.delayed(const Duration(milliseconds: 1000), () {
-      _visibleSubtitle.value = true;
-    });
-  }
+  late final AnimationController _ctrlTitle;
+  late final AnimationController _ctrlSubtitle;
+  late final Animation<double> _opTitle;
+  late final Animation<double> _opSubtitle;
 
-  void _startDelay() {
-    _timer = Timer(const Duration(seconds: 2), _goNext);
-  }
+  bool _didNavigate = false;
 
-  void _goNext() async {
-    // Navigator.of(context)
-    //     .pushReplacement(MaterialPageRoute(builder: (_) => const HomeView()));
+  void _goNext() {
+    if (_didNavigate || !mounted) return;
+    _didNavigate = true;
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const HomeView()),
+    );
   }
 
   @override
   void initState() {
     super.initState();
-    setVisibleTitle();
-    _startDelay();
+    _ctrlTitle = AnimationController(vsync: this, duration: durationTitle);
+    _ctrlSubtitle =
+        AnimationController(vsync: this, duration: durationSubtitle);
+
+    _opTitle = CurvedAnimation(parent: _ctrlTitle, curve: Curves.easeOut);
+    _opSubtitle = CurvedAnimation(parent: _ctrlSubtitle, curve: Curves.easeOut);
+
+    _ctrlTitle.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Future.delayed(delayBetween, () {
+          if (mounted) _ctrlSubtitle.forward();
+        });
+      }
+    });
+
+    _ctrlSubtitle.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Future.delayed(delayBetween, () {
+          _goNext();
+        });
+      }
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _ctrlTitle.forward();
+    });
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
+    _ctrlTitle.dispose();
+    _ctrlSubtitle.dispose();
     super.dispose();
   }
 
@@ -59,38 +83,29 @@ class _SplashViewState extends State<SplashView> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ValueListenableBuilder(
-                valueListenable: _visibleTitle,
-                builder: (context, value, child) => AnimatedOpacity(
-                  opacity: value ? 1.0 : 0.0,
-                  curve: Curves.easeIn,
-                  duration: Duration(milliseconds: _duration),
-                  child: SizedBox(
-                    width: context.screenWidth - AppPadding.p46,
-                    child: Image.asset(
-                      ImageAssets.logoSplash,
-                    ),
+              FadeTransition(
+                opacity: _opTitle,
+                child: SizedBox(
+                  width: context.screenWidth - AppPadding.p46,
+                  child: Image.asset(
+                    ImageAssets.logoSplash,
                   ),
                 ),
               ),
-              ValueListenableBuilder(
-                valueListenable: _visibleSubtitle,
-                builder: (context, value, child) => AnimatedOpacity(
-                  opacity: value ? 1.0 : 0.0,
-                  duration: Duration(milliseconds: _duration),
-                  child: const Column(
-                    children: [
-                      SizedBox(height: AppPadding.p24),
-                      Text(
-                        'The music party game',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: FontSize.s20,
-                            fontFamily: 'Montserrat'),
-                      ),
-                    ],
-                  ),
+              FadeTransition(
+                opacity: _opSubtitle,
+                child: const Column(
+                  children: [
+                    SizedBox(height: AppPadding.p24),
+                    Text(
+                      'The music party game',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: FontSize.s20,
+                          fontFamily: 'Montserrat'),
+                    ),
+                  ],
                 ),
               ),
             ],
