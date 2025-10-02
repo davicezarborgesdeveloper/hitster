@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
-import 'package:hitster/data/failure.dart';
-import 'package:hitster/domain/model/faqs.dart';
+import '../failure.dart';
+import '../../domain/model/faqs.dart';
 
 import '../../domain/repository/repository.dart';
 import '../../presentation/resource/assets_manager.dart';

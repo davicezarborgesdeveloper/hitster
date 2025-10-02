@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hitster/presentation/faqs/faqs_view.dart';
+import '../../faqs/faqs_view.dart';
 
 import '../../../app/di.dart';
 import '../../resource/value_manager.dart';
@@ -53,7 +53,8 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
           IconButton(
             onPressed: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const SettingsView()));
+                MaterialPageRoute(builder: (_) => const SettingsView()),
+              );
             },
             icon: const Icon(
               Icons.settings_outlined,
@@ -66,7 +67,7 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
       body: Stack(
         children: [
           buildBackground(widget.colorFst, widget.colorSnd),
-          widget.child != null ? widget.child! : const SizedBox()
+          widget.child != null ? widget.child! : const SizedBox(),
         ],
       ),
     );
@@ -78,9 +79,10 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: [colorFst, colorSnd],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter),
+              colors: [colorFst, colorSnd],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
           ),
         ),
         Positioned(
@@ -102,7 +104,7 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
               blur: 15,
             ),
           ),
-        )
+        ),
       ],
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hitster/presentation/game/game_view.dart';
-import 'package:hitster/presentation/resource/color_manager.dart';
-import 'package:hitster/presentation/rules/rules_view.dart';
-import 'package:hitster/presentation/share/widgets/scaffold_hitster.dart';
+import '../game/game_view.dart';
+import '../resource/color_manager.dart';
+import '../rules/rules_view.dart';
+import '../share/widgets/scaffold_hitster.dart';
 
 import '../resource/assets_manager.dart';
 import '../resource/style_manager.dart';
@@ -36,7 +36,9 @@ class _HomeViewState extends State<HomeView> {
                   Text(
                     'VAMOS JOGAR',
                     style: getMediumStyle(
-                        color: Colors.white, fontSize: FontSize.s32),
+                      color: Colors.white,
+                      fontSize: FontSize.s32,
+                    ),
                   ),
                   const SizedBox(height: AppPadding.p32),
                   Image.asset(ImageAssets.logoSplash),
@@ -44,7 +46,9 @@ class _HomeViewState extends State<HomeView> {
                   Text(
                     'O jogo de cartas de música',
                     style: getMediumStyle(
-                        color: Colors.white, fontSize: FontSize.s16),
+                      color: Colors.white,
+                      fontSize: FontSize.s16,
+                    ),
                   ),
                 ],
               ),
@@ -65,13 +69,18 @@ class _HomeViewState extends State<HomeView> {
                         elevation: 0,
                       ),
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => const RulesView()));
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const RulesView(),
+                          ),
+                        );
                       },
                       child: Text(
                         'Ler as regras',
                         style: getMediumStyle(
-                            color: Colors.white, fontSize: FontSize.s16),
+                          color: Colors.white,
+                          fontSize: FontSize.s16,
+                        ),
                       ),
                     ),
                   ),
@@ -81,7 +90,9 @@ class _HomeViewState extends State<HomeView> {
                     child: Text(
                       'OU',
                       style: getMediumStyle(
-                          color: Colors.white, fontSize: FontSize.s16),
+                        color: Colors.white,
+                        fontSize: FontSize.s16,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -89,19 +100,24 @@ class _HomeViewState extends State<HomeView> {
                     width: AppSize.s220,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => const GameView()));
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const GameView(),
+                          ),
+                        );
                       },
                       child: Text(
                         'Começar um jogo',
                         style: getMediumStyle(
-                            color: Colors.black, fontSize: FontSize.s16),
+                          color: Colors.black,
+                          fontSize: FontSize.s16,
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hitster/presentation/splash/splash_view.dart';
+import '../presentation/splash/splash_view.dart';
 
 // ignore: must_be_immutable
 class MyApp extends StatefulWidget {
@@ -17,11 +17,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: const SplashView());
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const SplashView(),
+    );
   }
 }

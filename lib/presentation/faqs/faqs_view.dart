@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hitster/presentation/resource/assets_manager.dart';
-import 'package:hitster/presentation/resource/color_manager.dart';
-import 'package:hitster/presentation/resource/screen_manager.dart';
+import '../resource/assets_manager.dart';
+import '../resource/color_manager.dart';
+import '../resource/screen_manager.dart';
 
 import '../../app/di.dart';
 import 'faqs_viewmodel.dart';
@@ -36,10 +36,11 @@ class _FaqsViewState extends State<FaqsView> {
         titleSpacing: 0,
         leadingWidth: 40,
         title: SizedBox(
-            width: context.percentWidth(.3),
-            child: Image.asset(ImageAssets.logoSplash)),
+          width: context.percentWidth(.3),
+          child: Image.asset(ImageAssets.logoSplash),
+        ),
       ),
-      body: Column(
+      body: const Column(
         children: [
           Text('FAQ (FREQUENTLY ASKED QUESTIONS - PERGUMTAS MAIS FREQUENTES)'),
           // Text('FAQ SOBRE O JOGO'),

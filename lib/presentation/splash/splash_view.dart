@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hitster/presentation/resource/screen_manager.dart';
-import 'package:hitster/presentation/resource/value_manager.dart';
+import '../resource/screen_manager.dart';
+import '../resource/value_manager.dart';
 
 import '../home/home_view.dart';
 import '../resource/assets_manager.dart';
@@ -77,38 +77,41 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          decoration: const BoxDecoration(
-            color: Colors.black,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FadeTransition(
-                opacity: _opTitle,
-                child: SizedBox(
-                  width: context.screenWidth - AppPadding.p46,
-                  child: Image.asset(
-                    ImageAssets.logoSplash,
-                  ),
+        decoration: const BoxDecoration(
+          color: Colors.black,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FadeTransition(
+              opacity: _opTitle,
+              child: SizedBox(
+                width: context.screenWidth - AppPadding.p46,
+                child: Image.asset(
+                  ImageAssets.logoSplash,
                 ),
               ),
-              FadeTransition(
-                opacity: _opSubtitle,
-                child: Column(
-                  children: [
-                    const SizedBox(height: AppPadding.p24),
-                    Text(
-                      'The music party game',
-                      textAlign: TextAlign.center,
-                      style: getRegularStyle(
-                          color: Colors.white, fontSize: FontSize.s20),
+            ),
+            FadeTransition(
+              opacity: _opSubtitle,
+              child: Column(
+                children: [
+                  const SizedBox(height: AppPadding.p24),
+                  Text(
+                    'The music party game',
+                    textAlign: TextAlign.center,
+                    style: getRegularStyle(
+                      color: Colors.white,
+                      fontSize: FontSize.s20,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          )),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
