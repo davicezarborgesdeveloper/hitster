@@ -2,10 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:hitster/presentation/resource/assets_manager.dart';
 import 'package:hitster/presentation/resource/color_manager.dart';
 import 'package:hitster/presentation/resource/screen_manager.dart';
-import 'package:hitster/presentation/resource/style_manager.dart';
 
-class HelpView extends StatelessWidget {
-  const HelpView({super.key});
+import '../../app/di.dart';
+import 'faqs_viewmodel.dart';
+
+class FaqsView extends StatefulWidget {
+  const FaqsView({super.key});
+
+  @override
+  State<FaqsView> createState() => _FaqsViewState();
+}
+
+class _FaqsViewState extends State<FaqsView> {
+  final FaqsViewModel _viewModel = instance<FaqsViewModel>();
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
+
+  void _bind() {
+    _viewModel.start();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +42,18 @@ class HelpView extends StatelessWidget {
       body: Column(
         children: [
           Text('FAQ (FREQUENTLY ASKED QUESTIONS - PERGUMTAS MAIS FREQUENTES)'),
-          Text('FAQ SOBRE O JOGO'),
-          ExpansionTile(
-            title: Text(
-              'COMO EU TOCO AS MÚSICAS?',
-              style: getBoldStyle(color: Colors.white),
-            ),
-            children: [
-              ListTile(
-                title: Text('text'),
-              )
-            ],
-          ),
+          // Text('FAQ SOBRE O JOGO'),
+          // ExpansionTile(
+          //   title: Text(
+          //     'COMO EU TOCO AS MÚSICAS?',
+          //     style: getBoldStyle(color: Colors.white),
+          //   ),
+          //   children: [
+          //     ListTile(
+          //       title: Text('text'),
+          //     )
+          //   ],
+          // ),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hitster/presentation/help/help_view.dart';
+import 'package:hitster/presentation/faqs/faqs_view.dart';
 
+import '../../../app/di.dart';
 import '../../resource/value_manager.dart';
 import '../../settings/settings_view.dart';
 import 'bubble_blur.dart';
@@ -42,8 +43,9 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
             size: 42,
           ),
           onPressed: () {
+            initFaqsModule();
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => const HelpView()));
+                .push(MaterialPageRoute(builder: (_) => const FaqsView()));
           },
         ),
         elevation: 0,
