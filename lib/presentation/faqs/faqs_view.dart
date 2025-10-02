@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../domain/enum/flow_state.dart';
 import '../resource/assets_manager.dart';
 import '../resource/color_manager.dart';
 import '../resource/screen_manager.dart';
@@ -50,7 +51,20 @@ class _FaqsViewState extends State<FaqsView> {
               textAlign: TextAlign.center,
               style: getBoldStyle(color: Colors.white, fontSize: 32),
             ),
-            Expanded(child: ListView.builder(itemBuilder: (context, index) {})),
+            Expanded(
+                child: ListenableBuilder(
+                    listenable: Listenable.merge([]),
+                    builder: (BuildContext context, Widget? child) {
+                      if (_viewModel.state.value == FlowState.loading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      if (_viewModel.state.value == FlowState.success) {}
+                      return ListView.builder(itemBuilder: (context, index) {
+                        return ExpansionTile(title: Text('teste'));
+                      });
+                    })),
             // Text('FAQ SOBRE O JOGO'),
             // ExpansionTile(
             //   title: Text(

@@ -14,8 +14,9 @@ class RepositoryImpl implements Repository {
   Future<Either<Failure, List<Faq>>> getFaqs() async {
     try {
       final response = await _localDataSource.getDataFromJson(JsonAssets.faqs);
-      // List<Faq> listFaq = response.;
-      return Right([]);
+      final List<Faq> listFaq = <Faq>[];
+      response.forEach((res) => listFaq.add(Faq.fromJson(res)));
+      return Right(listFaq);
     } on Exception catch (e) {
       return Left(Failure(0, e.toString()));
     }
