@@ -64,24 +64,16 @@
         "title": "FAQ SOBRE APP HITSTER",
         "session": [
             {
-                "title": "",
-                "content": ""
+                "title": "POR QUE O HITSTER PRECISA DE ACESSO À CÂMERA?",
+                "content": "É necessária uma câmera para escanear o código QR no verso de uma carta HITSTER. Sem isso, o jogo não funcionará."
             },
             {
-                "title": "",
-                "content": ""
+                "title": "MINHA CÂMERA NÃO FUNCIONA DENTRO DO APP HITSTER",
+                "content": "Na maioria dos dispositivos, é possível desativar o acesso à câmera para o seu dispositivo. Exclua e reinstale o aplicativo HITSTER da App Store ou Google Play. O aplicativo pedirá sua permissão para acessar sua câmera."
             },
             {
-                "title": "",
-                "content": ""
-            },
-            {
-                "title": "",
-                "content": ""
-            },
-            {
-                "title": "",
-                "content": ""
+                "title": "MEU TELEFONE NÃO CONSEGUE ESCANEAR O CÓDIGO QR NA CARTA",
+                "content": "Certifique-se de que a carta não esteja danificada de forma alguma e que haja luz suficiente para a câmera ver o código na carta. Evite reflexos intensos, pois eles podem impedir que a câmera veja o código QR. Você pode bloqueá-los colocando sua mão entre a fonte de luz e o cartão sem cobrir o código QR."
             },
             {
                 "title": "ESCANEAR UMA CARTA PRODUZ UMA TELA PRETA",
