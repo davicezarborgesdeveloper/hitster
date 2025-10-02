@@ -6,5 +6,5 @@ class ImageAssets {
 }
 
 class JsonAssets {
-  static const String faqs = '$jsonPath/faqs.json';
+  static const String faqs = '$jsonPath/faq.json';
 }

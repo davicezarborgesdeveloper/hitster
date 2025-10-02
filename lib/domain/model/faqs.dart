@@ -1,10 +1,10 @@
-class FAQS {
+class Faq {
   String? title;
   List<Session>? session;
 
-  FAQS({this.title, this.session});
+  Faq({this.title, this.session});
 
-  FAQS.fromJson(Map<String, dynamic> json) {
+  Faq.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     if (json['session'] != null) {
       session = <Session>[];

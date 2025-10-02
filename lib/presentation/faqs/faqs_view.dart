@@ -4,6 +4,7 @@ import '../resource/color_manager.dart';
 import '../resource/screen_manager.dart';
 
 import '../../app/di.dart';
+import '../resource/style_manager.dart';
 import 'faqs_viewmodel.dart';
 
 class FaqsView extends StatefulWidget {
@@ -40,22 +41,30 @@ class _FaqsViewState extends State<FaqsView> {
           child: Image.asset(ImageAssets.logoSplash),
         ),
       ),
-      body: const Column(
-        children: [
-          Text('FAQ (FREQUENTLY ASKED QUESTIONS - PERGUMTAS MAIS FREQUENTES)'),
-          // Text('FAQ SOBRE O JOGO'),
-          // ExpansionTile(
-          //   title: Text(
-          //     'COMO EU TOCO AS MÚSICAS?',
-          //     style: getBoldStyle(color: Colors.white),
-          //   ),
-          //   children: [
-          //     ListTile(
-          //       title: Text('text'),
-          //     )
-          //   ],
-          // ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+        child: Column(
+          children: [
+            Text(
+              'FAQ (FREQUENTLY ASKED QUESTIONS - PERGUNTAS MAIS FREQUENTES)',
+              textAlign: TextAlign.center,
+              style: getBoldStyle(color: Colors.white, fontSize: 32),
+            ),
+            Expanded(child: ListView.builder(itemBuilder: (context, index) {})),
+            // Text('FAQ SOBRE O JOGO'),
+            // ExpansionTile(
+            //   title: Text(
+            //     'COMO EU TOCO AS MÚSICAS?',
+            //     style: getBoldStyle(color: Colors.white),
+            //   ),
+            //   children: [
+            //     ListTile(
+            //       title: Text('text'),
+            //     )
+            //   ],
+            // ),
+          ],
+        ),
       ),
     );
   }

@@ -11,10 +11,11 @@ class RepositoryImpl implements Repository {
   final LocalDataSource _localDataSource;
   RepositoryImpl(this._localDataSource);
   @override
-  Future<Either<Failure, FAQS>> getFaqs() async {
+  Future<Either<Failure, List<Faq>>> getFaqs() async {
     try {
       final response = await _localDataSource.getDataFromJson(JsonAssets.faqs);
-      return Right(FAQS.fromJson(response));
+      // List<Faq> listFaq = response.;
+      return Right([]);
     } on Exception catch (e) {
       return Left(Failure(0, e.toString()));
     }
