@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/model/faqs.dart';
+import '../../resource/color_manager.dart';
 import '../../resource/font_manager.dart';
 import '../../resource/style_manager.dart';
 
@@ -17,6 +18,7 @@ class _SessionTileState extends State<SessionTile> {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      shape: const Border(),
       trailing: ValueListenableBuilder(
         valueListenable: isOpen,
         builder: (context, isOpen, value) => AnimatedSwitcher(
@@ -29,11 +31,14 @@ class _SessionTileState extends State<SessionTile> {
         ),
       ),
       onExpansionChanged: (v) => isOpen.value = v,
-      title: Text(
-        widget.s.title ?? '',
-        style: getMediumStyle(
-          color: Colors.white,
-          fontSize: FontSize.s20,
+      title: ValueListenableBuilder(
+        valueListenable: isOpen,
+        builder: (context, isOpen, value) => Text(
+          widget.s.title ?? '',
+          style: getMediumStyle(
+            color: isOpen ? ColorManager.primary : Colors.white,
+            fontSize: FontSize.s20,
+          ),
         ),
       ),
       children: [
@@ -45,9 +50,12 @@ class _SessionTileState extends State<SessionTile> {
   }
 
   Widget getContent(String content) {
-    return Text(
-      content,
-      style: getRegularStyle(color: Colors.white),
+    return Padding(
+      padding: const EdgeInsets.only(left: 16),
+      child: Text(
+        content,
+        style: getRegularStyle(color: Colors.white, fontSize: 14),
+      ),
     );
   }
 }
