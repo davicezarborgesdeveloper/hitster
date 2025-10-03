@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../domain/enum/flow_state.dart';
+import '../../domain/model/faqs.dart';
 import '../resource/assets_manager.dart';
 import '../resource/color_manager.dart';
 import '../resource/screen_manager.dart';
 
 import '../../app/di.dart';
 import '../resource/style_manager.dart';
+import '../resource/value_manager.dart';
+import '../share/widgets/empty_container.dart';
 import 'faqs_viewmodel.dart';
+import 'widgets/faq_tile.dart';
 
 class FaqsView extends StatefulWidget {
   const FaqsView({super.key});
@@ -43,28 +47,43 @@ class _FaqsViewState extends State<FaqsView> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+        padding: const EdgeInsets.fromLTRB(
+          AppPadding.p22,
+          AppPadding.p16,
+          AppPadding.p22,
+          AppPadding.zero,
+        ),
         child: Column(
           children: [
-            Text(
-              'FAQ (FREQUENTLY ASKED QUESTIONS - PERGUNTAS MAIS FREQUENTES)',
-              textAlign: TextAlign.center,
-              style: getBoldStyle(color: Colors.white, fontSize: 32),
+            Padding(
+              padding: const EdgeInsets.only(bottom: AppPadding.p46),
+              child: Text(
+                'FAQ (FREQUENTLY ASKED QUESTIONS - PERGUNTAS MAIS FREQUENTES)',
+                textAlign: TextAlign.center,
+                style:
+                    getBoldStyle(color: Colors.white, fontSize: FontSize.s32),
+              ),
             ),
             Expanded(
-                child: ListenableBuilder(
-                    listenable: Listenable.merge([]),
-                    builder: (BuildContext context, Widget? child) {
-                      if (_viewModel.state.value == FlowState.loading) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      if (_viewModel.state.value == FlowState.success) {}
-                      return ListView.builder(itemBuilder: (context, index) {
-                        return ExpansionTile(title: Text('teste'));
-                      });
-                    })),
+              child: ListenableBuilder(
+                listenable:
+                    Listenable.merge([_viewModel.state, _viewModel.faqs]),
+                builder: (BuildContext context, Widget? child) {
+                  return switch (_viewModel.state.value) {
+                    FlowState.loading => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    FlowState.success => ListView.builder(
+                        itemCount: _viewModel.faqCount,
+                        itemBuilder: (context, index) {
+                          return FaqTile(faq: _viewModel.faqs.value?[index]);
+                        },
+                      ),
+                    _ => const EmptyContainer()
+                  };
+                },
+              ),
+            ),
             // Text('FAQ SOBRE O JOGO'),
             // ExpansionTile(
             //   title: Text(

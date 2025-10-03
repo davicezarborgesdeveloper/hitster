@@ -12,7 +12,7 @@ class FaqsViewModel {
 
   final faqs = ValueNotifier<List<Faq>?>(null);
 
-  int get classCount {
+  int get faqCount {
     return faqs.value?.length ?? 0;
   }
 

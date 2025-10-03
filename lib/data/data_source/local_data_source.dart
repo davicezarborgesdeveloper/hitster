@@ -3,8 +3,6 @@ import 'dart:developer';
 
 import 'package:flutter/services.dart';
 
-import '../../domain/model/faqs.dart';
-
 abstract class LocalDataSource {
   Future<dynamic> getDataFromJson(String fileName);
 }
