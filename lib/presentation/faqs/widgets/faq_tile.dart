@@ -36,16 +36,3 @@ class FaqTile extends StatelessWidget {
         : const EmptyContainer();
   }
 }
-// return ExpansionTile(
-                            // title: Text(
-                            //   faq.title ?? '',
-                            //   style: getBoldStyle(
-                            //     color: Colors.white,
-                            //     fontSize: FontSize.s20,
-                            //   ),
-                            // ),
-                          //   children: faq.session
-                          //           ?.map((f) => Text(f.title ?? ''))
-                          //           .toList() ??
-                          //       [const EmptyContainer()],
-                          // );

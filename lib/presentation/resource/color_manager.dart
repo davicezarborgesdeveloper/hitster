@@ -4,6 +4,7 @@ class ColorManager {
   static Color primary = HexColor.fromHex('#2CCBF5');
   static Color secondary = HexColor.fromHex('#624595');
   static Color black = HexColor.fromHex('#000000');
+  static Color yellowLink = HexColor.fromHex('#e4d819');
 }
 
 extension HexColor on Color {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../domain/enum/flow_state.dart';
-import '../../domain/model/faqs.dart';
 import '../resource/assets_manager.dart';
 import '../resource/color_manager.dart';
 import '../resource/screen_manager.dart';
