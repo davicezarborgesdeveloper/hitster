@@ -57,7 +57,8 @@ class _SessionTileState extends State<SessionTile> {
   }
 
   Widget getContent(String content) {
-    final regex = RegExp(r'(<a>(.*?)<\/a>|<l>(.*?)<\/l>)');
+    // Novo padrão Markdown-like: [texto](alvo)
+    final regex = RegExp(r'\[([^\]]*)\]\(([^)]+)\)');
     final spans = <TextSpan>[];
     int lastIndex = 0;
 
@@ -71,30 +72,38 @@ class _SessionTileState extends State<SessionTile> {
         );
       }
 
-      final isExternal = match.group(2) != null;
-      final tagContent = isExternal ? match.group(2)! : match.group(3)!;
+      final linkText = match.group(1) ?? '';
+      final target = match.group(2) ?? '';
+
+      final displayText = linkText.isEmpty ? target : linkText;
+
+      final isInternal = target.startsWith('@');
+      final isExternal = target.startsWith('http');
 
       spans.add(
         TextSpan(
-          text: tagContent,
+          text: displayText,
           style: getRegularStyle(
-            color: ColorManager.primary,
+            color: ColorManager.yellowLink,
             fontSize: 14,
-          ).copyWith(decoration: TextDecoration.underline),
+          ).copyWith(
+            decoration:
+                isExternal ? TextDecoration.underline : TextDecoration.none,
+          ),
           recognizer: TapGestureRecognizer()
             ..onTap = () async {
               if (isExternal) {
-                // Tag <a> → abre no navegador/app
-                final uri = Uri.parse(tagContent);
+                final uri = Uri.parse(target);
                 if (await canLaunchUrl(uri)) {
                   await launchUrl(uri, mode: LaunchMode.externalApplication);
                 }
-              } else {
-                // Tag <l> → navegação interna
+              } else if (isInternal) {
+                final route = target.substring(1);
                 if (context.mounted) {
-                  Navigator.pushNamed(context, '/form');
-                  // ou: Navigator.of(context).push(MaterialPageRoute(builder: (_) => FormPage()));
+                  Navigator.pushNamed(context, '/$route');
                 }
+              } else {
+                debugPrint('Formato de link não reconhecido: $target');
               }
             },
         ),
@@ -103,6 +112,7 @@ class _SessionTileState extends State<SessionTile> {
       lastIndex = match.end;
     }
 
+    // Texto final (sem links)
     if (lastIndex < content.length) {
       spans.add(
         TextSpan(

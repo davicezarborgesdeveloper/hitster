@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../presentation/splash/splash_view.dart';
+import '../presentation/routes_manager.dart';
+import '../presentation/resource/theme_manager.dart';
 
 // ignore: must_be_immutable
 class MyApp extends StatefulWidget {
@@ -18,11 +19,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const SplashView(),
+      theme: getApplicationTheme(),
+      onGenerateRoute: RouteGenerator.getRoute,
+      initialRoute: Routes.splashRoute,
     );
   }
 }

@@ -56,7 +56,7 @@
       },
       {
         "title": "TENHO OUTRA PERGUNTA",
-        "content": "Você pode entrar em contato conosco por meio de nosso [formulário online](@form/contato). Após receber o e-mail de confirmação, pode levar até 10 dias úteis para que sua pergunta seja respondida."
+        "content": "Você pode entrar em contato conosco por meio de nosso [formulário online](@contact). Após receber o e-mail de confirmação, pode levar até 10 dias úteis para que sua pergunta seja respondida."
       }
     ]
   },
@@ -105,7 +105,7 @@
       },
       {
         "title": "EU TENHO OUTRA PERGUNTA",
-        "content": "Você pode entrar em contato conosco usando nosso [formulário de contato online](@form/contato). Depois de receber um e-mail de confirmação, pode levar até 10 dias úteis para responder à sua pergunta."
+        "content": "Você pode entrar em contato conosco usando nosso [formulário de contato online](@contact). Depois de receber um e-mail de confirmação, pode levar até 10 dias úteis para responder à sua pergunta."
       }
     ]
   }

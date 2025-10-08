@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../routes_manager.dart';
 import '../resource/screen_manager.dart';
 import '../resource/value_manager.dart';
 
-import '../home/home_view.dart';
 import '../resource/assets_manager.dart';
 import '../resource/style_manager.dart';
 
@@ -30,9 +30,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   void _goNext() {
     if (_didNavigate || !mounted) return;
     _didNavigate = true;
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const HomeView()),
-    );
+    Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
   }
 
   @override

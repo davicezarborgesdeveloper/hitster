@@ -52,50 +52,37 @@ class _FaqsViewState extends State<FaqsView> {
           AppPadding.p22,
           AppPadding.zero,
         ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: AppPadding.p46),
-              child: Text(
-                'FAQ (FREQUENTLY ASKED QUESTIONS - PERGUNTAS MAIS FREQUENTES)',
-                textAlign: TextAlign.center,
-                style:
-                    getBoldStyle(color: Colors.white, fontSize: FontSize.s32),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: AppPadding.p46),
+                child: Text(
+                  'FAQ (FREQUENTLY ASKED QUESTIONS - PERGUNTAS MAIS FREQUENTES)',
+                  textAlign: TextAlign.center,
+                  style: getBoldStyle(
+                    color: Colors.white,
+                    fontSize: FontSize.s32,
+                  ),
+                ),
               ),
-            ),
-            Expanded(
-              child: ListenableBuilder(
+              ListenableBuilder(
                 listenable:
                     Listenable.merge([_viewModel.state, _viewModel.faqs]),
-                builder: (BuildContext context, Widget? child) {
-                  return switch (_viewModel.state.value) {
-                    FlowState.loading => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    FlowState.success => ListView.builder(
-                        itemCount: _viewModel.faqCount,
-                        itemBuilder: (context, index) {
-                          return FaqTile(faq: _viewModel.faqs.value?[index]);
-                        },
-                      ),
-                    _ => const EmptyContainer()
-                  };
+                builder: (_, child) => switch (_viewModel.state.value) {
+                  FlowState.loading => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  FlowState.success => Column(
+                      children: _viewModel.faqs.value!
+                          .map((f) => FaqTile(faq: f))
+                          .toList(),
+                    ),
+                  _ => const EmptyContainer()
                 },
               ),
-            ),
-            // Text('FAQ SOBRE O JOGO'),
-            // ExpansionTile(
-            //   title: Text(
-            //     'COMO EU TOCO AS MÚSICAS?',
-            //     style: getBoldStyle(color: Colors.white),
-            //   ),
-            //   children: [
-            //     ListTile(
-            //       title: Text('text'),
-            //     )
-            //   ],
-            // ),
-          ],
+            ],
+          ),
         ),
       ),
     );

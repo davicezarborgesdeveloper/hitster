@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../faqs/faqs_view.dart';
 
 import '../../../app/di.dart';
 import '../../resource/value_manager.dart';
@@ -44,14 +43,14 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
           ),
           onPressed: () {
             initFaqsModule();
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => const FaqsView()));
+            Navigator.of(context).pushNamed('/faq');
           },
         ),
         elevation: 0,
         actions: [
           IconButton(
             onPressed: () {
+              Navigator.of(context).pushNamed('/settings');
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const SettingsView()),
               );
