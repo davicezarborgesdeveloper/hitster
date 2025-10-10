@@ -24,6 +24,7 @@ class _HomeViewState extends State<HomeView> {
         colorFst: ColorManager.primary,
         colorSnd: ColorManager.secondary,
         bubbles: 2,
+        sndRoute: '/settings',
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

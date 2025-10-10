@@ -11,10 +11,14 @@ class AppPadding {
 }
 
 class AppSize {
+  static const double zero = 0;
   static const double s66 = 66.0;
+  static const double s80 = 80.0;
   static const double s150 = 150.0;
+  static const double s160 = 160.0;
   static const double s220 = 220.0;
   static const double s250 = 250.0;
+  static const double s292 = 292.0;
 }
 
 class FontSize {

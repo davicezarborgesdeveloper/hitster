@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../app/di.dart';
 import '../../resource/value_manager.dart';
-import '../../settings/settings_view.dart';
 import 'bubble_blur.dart';
 
 class ScaffoldHitster extends StatefulWidget {
@@ -10,10 +9,12 @@ class ScaffoldHitster extends StatefulWidget {
   final Color colorSnd;
   final int? bubbles;
   final Widget? child;
+  final String sndRoute;
   const ScaffoldHitster({
     super.key,
     this.colorFst = Colors.black,
     this.colorSnd = Colors.black,
+    required this.sndRoute,
     this.bubbles = 0,
     this.child,
   });
@@ -23,8 +24,42 @@ class ScaffoldHitster extends StatefulWidget {
 }
 
 class _ScaffoldHitsterState extends State<ScaffoldHitster> {
-  final double sizeFst = AppSize.s250;
-  final double sizeSnd = AppSize.s150;
+  late double sizeFst;
+  late double sizeSnd;
+  late double sizeTrd;
+
+  var atrFst = {};
+  var atrSnd = {};
+  var atrTrd = {};
+
+  @override
+  void initState() {
+    atrFst = {
+      'size': switch (widget.bubbles) {
+        2 => AppSize.s250,
+        3 => AppSize.s160,
+        _ => AppSize.zero,
+      },
+      'position': []
+    };
+    atrSnd = {
+      'size': switch (widget.bubbles) {
+        2 => AppSize.s150,
+        3 => AppSize.s80,
+        _ => AppSize.zero,
+      },
+    };
+
+    atrTrd = {
+      'size': switch (widget.bubbles) {
+        2 => AppSize.zero,
+        3 => AppSize.s292,
+        _ => AppSize.zero,
+      },
+    };
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +85,14 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed('/settings');
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const SettingsView()),
-              );
+              widget.sndRoute == '/close'
+                  ? Navigator.pop(context)
+                  : Navigator.of(context).pushNamed('/settings');
             },
-            icon: const Icon(
-              Icons.settings_outlined,
+            icon: Icon(
+              widget.sndRoute == '/close'
+                  ? Icons.cancel_outlined
+                  : Icons.settings_outlined,
               color: Colors.white,
               size: 42,
             ),
@@ -88,7 +124,7 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
           right: -96,
           top: 235,
           child: BubbleBlur(
-            size: sizeFst,
+            size: atrFst['size'] as double,
             color: Colors.white.withOpacity(.5),
             blur: 10,
           ),
@@ -98,10 +134,19 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 85),
             child: BubbleBlur(
-              size: sizeSnd,
+              size: atrSnd['size'] as double,
               color: Colors.white.withOpacity(.4),
               blur: 15,
             ),
+          ),
+        ),
+        Positioned(
+          right: 0,
+          top: 0,
+          child: BubbleBlur(
+            size: atrTrd['size'] as double,
+            color: Colors.white.withOpacity(.5),
+            blur: 10,
           ),
         ),
       ],
