@@ -32,31 +32,53 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
   var atrSnd = {};
   var atrTrd = {};
 
+  List<Map<String, dynamic>> atr = <Map<String, dynamic>>[];
   @override
   void initState() {
-    atrFst = {
-      'size': switch (widget.bubbles) {
-        2 => AppSize.s250,
-        3 => AppSize.s160,
-        _ => AppSize.zero,
+    atr = [
+      {
+        'size': switch (widget.bubbles) {
+          2 => AppSize.s250,
+          3 => AppSize.s160,
+          4 => AppSize.s190,
+          _ => AppSize.zero,
+        },
+        'position': switch (widget.bubbles) {
+          2 => [null, 235.0, -96.0, null], //left, top, right, bottom
+          3 => [57.0, 13.0, null, null],
+          4 => [8.0, 64.0, null, null],
+          _ => 0,
+        },
       },
-      'position': []
-    };
-    atrSnd = {
-      'size': switch (widget.bubbles) {
-        2 => AppSize.s150,
-        3 => AppSize.s80,
-        _ => AppSize.zero,
+      {
+        'size': switch (widget.bubbles) {
+          2 => AppSize.s150,
+          3 => AppSize.s80,
+          4 => AppSize.s80,
+          _ => AppSize.zero,
+        },
+        'position': switch (widget.bubbles) {
+          2 => [0.0, null, 0.0, 85.0], //left, top, right, bottom
+          3 => [null, 0.0, 64.0, 100.0],
+          4 => [null, 32.0, 12.0, 0.0],
+          _ => 0,
+        },
       },
-    };
-
-    atrTrd = {
-      'size': switch (widget.bubbles) {
-        2 => AppSize.zero,
-        3 => AppSize.s292,
-        _ => AppSize.zero,
-      },
-    };
+      {
+        'size': switch (widget.bubbles) {
+          2 => AppSize.zero,
+          3 => AppSize.s292,
+          4 => AppSize.s170,
+          _ => AppSize.zero,
+        },
+        'position': switch (widget.bubbles) {
+          2 => [null, null, null, null], //left, top, right, bottom
+          3 => [0.0, null, 0.0, 0.0],
+          4 => [null, null, 20.0, 64.0],
+          _ => 0,
+        },
+      }
+    ];
 
     super.initState();
   }
@@ -108,7 +130,10 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
     );
   }
 
-  Widget buildBackground(Color colorFst, Color colorSnd) {
+  Widget buildBackground(
+    Color colorFst,
+    Color colorSnd,
+  ) {
     return Stack(
       children: [
         Container(
@@ -120,33 +145,17 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
             ),
           ),
         ),
-        Positioned(
-          right: -96,
-          top: 235,
-          child: BubbleBlur(
-            size: atrFst['size'] as double,
-            color: Colors.white.withOpacity(.5),
-            blur: 10,
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 85),
+        ...atr.map(
+          (a) => Positioned(
+            left: a['position'][0],
+            top: a['position'][1],
+            right: a['position'][2],
+            bottom: a['position'][3],
             child: BubbleBlur(
-              size: atrSnd['size'] as double,
-              color: Colors.white.withOpacity(.4),
-              blur: 15,
+              size: a['size'],
+              color: Colors.white.withOpacity(.3),
+              blur: 5,
             ),
-          ),
-        ),
-        Positioned(
-          right: 0,
-          top: 0,
-          child: BubbleBlur(
-            size: atrTrd['size'] as double,
-            color: Colors.white.withOpacity(.5),
-            blur: 10,
           ),
         ),
       ],

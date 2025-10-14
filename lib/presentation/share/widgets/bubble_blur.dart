@@ -28,7 +28,7 @@ class BubbleBlur extends StatelessWidget {
               color,
               color.withOpacity(0.0),
             ],
-            stops: const [0.55, 1.0],
+            stops: const [0.75, 1.0],
           ),
         ),
       ),
