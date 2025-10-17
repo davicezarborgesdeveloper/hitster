@@ -9,6 +9,7 @@ class ColorManager {
   static Color quaternaryLight = HexColor.fromHex('#ED8E4C');
 
   static Color black = HexColor.fromHex('#000000');
+  static Color white = HexColor.fromHex('#FFFFFF');
   static Color yellowLink = HexColor.fromHex('#FFC850');
 }
 

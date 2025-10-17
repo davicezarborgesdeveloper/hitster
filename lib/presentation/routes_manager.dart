@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'change_spotify/change_spotify_view.dart';
+import 'connect_spotify_premium/connect_spotify_premium_view.dart';
 import 'contact/contact_view.dart';
 import 'faqs/faqs_view.dart';
 import 'home/home_view.dart';
@@ -12,6 +14,10 @@ class Routes {
   static const String faqRoute = '/faq';
   static const String settingsRoute = '/settings';
   static const String contactRoute = '/contact';
+  static const String changeSpotifyRoute = '/change-spotify';
+  static const String changeSpotifyPremiumRoute = '/connect-spotify-premium';
+  static const String countryRoute = '/country';
+  static const String languageRoute = '/language';
 }
 
 class RouteGenerator {
@@ -27,6 +33,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SettingsView());
       case Routes.contactRoute:
         return MaterialPageRoute(builder: (_) => const ContactView());
+      case Routes.changeSpotifyRoute:
+        return MaterialPageRoute(builder: (_) => const ChangeSpotifyView());
+      case Routes.changeSpotifyPremiumRoute:
+        return MaterialPageRoute(
+          builder: (_) => const ConnectSpotifyPremiumView(),
+        );
       default:
         return undefinedRoute();
     }

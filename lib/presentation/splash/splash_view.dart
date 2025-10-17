@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../resource/color_manager.dart';
+import '../resource/font_manager.dart';
 import '../routes_manager.dart';
 import '../resource/screen_manager.dart';
 import '../resource/value_manager.dart';
@@ -100,7 +102,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
                     'The music party game',
                     textAlign: TextAlign.center,
                     style: getRegularStyle(
-                      color: Colors.white,
+                      color: ColorManager.white,
                       fontSize: FontSize.s20,
                     ),
                   ),

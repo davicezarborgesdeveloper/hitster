@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/model/faqs.dart';
+import '../../resource/color_manager.dart';
+import '../../resource/font_manager.dart';
 import '../../resource/style_manager.dart';
 import '../../resource/value_manager.dart';
 import '../../share/widgets/empty_container.dart';
@@ -20,8 +22,10 @@ class FaqTile extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: AppPadding.p24),
                 child: Text(
                   faq!.title ?? '',
-                  style:
-                      getBoldStyle(color: Colors.white, fontSize: FontSize.s20),
+                  style: getBoldStyle(
+                    color: ColorManager.white,
+                    fontSize: FontSize.s20,
+                  ),
                 ),
               ),
               Column(

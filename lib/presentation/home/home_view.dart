@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../game/game_view.dart';
 import '../resource/color_manager.dart';
+import '../resource/font_manager.dart';
 import '../rules/rules_view.dart';
 import '../share/widgets/scaffold_hitster.dart';
 
@@ -37,7 +38,7 @@ class _HomeViewState extends State<HomeView> {
                   Text(
                     'VAMOS JOGAR',
                     style: getMediumStyle(
-                      color: Colors.white,
+                      color: ColorManager.white,
                       fontSize: FontSize.s32,
                     ),
                   ),
@@ -47,7 +48,7 @@ class _HomeViewState extends State<HomeView> {
                   Text(
                     'O jogo de cartas de música',
                     style: getMediumStyle(
-                      color: Colors.white,
+                      color: ColorManager.white,
                       fontSize: FontSize.s16,
                     ),
                   ),
@@ -66,7 +67,7 @@ class _HomeViewState extends State<HomeView> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
-                        side: const BorderSide(color: Colors.white, width: 2),
+                        side: BorderSide(color: ColorManager.white, width: 2),
                         elevation: 0,
                       ),
                       onPressed: () {
@@ -79,7 +80,7 @@ class _HomeViewState extends State<HomeView> {
                       child: Text(
                         'Ler as regras',
                         style: getMediumStyle(
-                          color: Colors.white,
+                          color: ColorManager.white,
                           fontSize: FontSize.s16,
                         ),
                       ),
@@ -91,7 +92,7 @@ class _HomeViewState extends State<HomeView> {
                     child: Text(
                       'OU',
                       style: getMediumStyle(
-                        color: Colors.white,
+                        color: ColorManager.white,
                         fontSize: FontSize.s16,
                       ),
                     ),

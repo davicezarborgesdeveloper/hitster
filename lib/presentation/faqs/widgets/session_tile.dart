@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/model/faqs.dart';
 import '../../resource/color_manager.dart';
+import '../../resource/font_manager.dart';
 import '../../resource/style_manager.dart';
 import '../../resource/value_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -42,7 +43,7 @@ class _SessionTileState extends State<SessionTile> {
           builder: (context, isOpen, value) => Text(
             widget.s.title ?? '',
             style: getMediumStyle(
-              color: isOpen ? ColorManager.primary : Colors.white,
+              color: isOpen ? ColorManager.primary : ColorManager.white,
               fontSize: FontSize.s20,
             ),
           ),
@@ -67,7 +68,7 @@ class _SessionTileState extends State<SessionTile> {
         spans.add(
           TextSpan(
             text: content.substring(lastIndex, match.start),
-            style: getRegularStyle(color: Colors.white, fontSize: 14),
+            style: getRegularStyle(color: ColorManager.white, fontSize: 14),
           ),
         );
       }
@@ -117,7 +118,7 @@ class _SessionTileState extends State<SessionTile> {
       spans.add(
         TextSpan(
           text: content.substring(lastIndex),
-          style: getRegularStyle(color: Colors.white, fontSize: 14),
+          style: getRegularStyle(color: ColorManager.white, fontSize: 14),
         ),
       );
     }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/di.dart';
+import '../../resource/color_manager.dart';
 import '../../resource/value_manager.dart';
 import 'bubble_blur.dart';
 
@@ -15,7 +16,7 @@ class ScaffoldHitster extends StatefulWidget {
     this.colorFst = Colors.black,
     this.colorSnd = Colors.black,
     required this.sndRoute,
-    this.bubbles = 0,
+    this.bubbles = 2,
     this.child,
   });
 
@@ -27,10 +28,6 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
   late double sizeFst;
   late double sizeSnd;
   late double sizeTrd;
-
-  var atrFst = {};
-  var atrSnd = {};
-  var atrTrd = {};
 
   List<Map<String, dynamic>> atr = <Map<String, dynamic>>[];
   @override
@@ -93,9 +90,9 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.help_outline,
-            color: Colors.white,
+            color: ColorManager.white,
             size: 42,
           ),
           onPressed: () {
@@ -115,7 +112,7 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
               widget.sndRoute == '/close'
                   ? Icons.cancel_outlined
                   : Icons.settings_outlined,
-              color: Colors.white,
+              color: ColorManager.white,
               size: 42,
             ),
           ),
@@ -153,7 +150,7 @@ class _ScaffoldHitsterState extends State<ScaffoldHitster> {
             bottom: a['position'][3],
             child: BubbleBlur(
               size: a['size'],
-              color: Colors.white.withOpacity(.3),
+              color: ColorManager.white.withOpacity(.3),
               blur: 5,
             ),
           ),

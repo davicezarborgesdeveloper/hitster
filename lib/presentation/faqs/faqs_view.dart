@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../domain/enum/flow_state.dart';
 import '../resource/assets_manager.dart';
 import '../resource/color_manager.dart';
+import '../resource/font_manager.dart';
 import '../resource/screen_manager.dart';
 
 import '../../app/di.dart';
@@ -36,7 +37,7 @@ class _FaqsViewState extends State<FaqsView> {
     return Scaffold(
       backgroundColor: ColorManager.black,
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: ColorManager.white),
         backgroundColor: ColorManager.black,
         titleSpacing: 0,
         leadingWidth: 40,
@@ -61,7 +62,7 @@ class _FaqsViewState extends State<FaqsView> {
                   'FAQ (FREQUENTLY ASKED QUESTIONS - PERGUNTAS MAIS FREQUENTES)',
                   textAlign: TextAlign.center,
                   style: getBoldStyle(
-                    color: Colors.white,
+                    color: ColorManager.white,
                     fontSize: FontSize.s32,
                   ),
                 ),
